@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+.App {
+  width: 100%;
+  min-height: 100vh;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+body {
+  background-color: #f8f8f8;
+}
+/* Mecanisme principale */
+.dark,
+.dark .Card,
+.dark .gift {
+  background: #242526;
+  color: #f2f1f1;
+}
+.gift {
+  background-color: white;
+}
+.light,
+.light .Card {
+  background: #f8f8f8;
+  color: #242526;
+}
+.light .dinam-log {
+  color: #636363;
+}
+
+.dark .dinam-log {
+  color: white;
+}
+/*Fin Mecanisme principale */
+.dark .icones .user,
+.dark .icones .bars {
+  color: #f2f1f1;
+}
+.dark .NavBar {
+  background: #242526;
+  color: #fff;
+}
+.dark .auth {
+  background-color: #111;
+  color: white;
+}
+
+.dark .mobilMode {
+  background: #242526;
+  color: white;
+}
+.dark .input {
+  background-color: transparent;
+}
+
+.dark .footer {
+  background: #242526;
+}
+.dark .FAQ {
+  background-color: #111;
+}
+.dark .FAQ .big-small .small {
+  color: #e3e3e3;
+}
+.dark .FAQ {
+  background-color: #111;
+  border: 2px solid orange;
+}
+.dark .FAQ .small {
+  color: #242526;
+}
+
+.dark .products .div {
+  background-color: #111;
+  border: 2px solid orange;
+}
+.dark .Propos,
+.dark .services,
+.dark .project {
+  background-color: #111;
+}
+.light .admin {
+  background-color: white;
+}
+.dark .kdo i {
+  color: #242526;
+}
+.dark .contact {
+  background-color: #111;
+}
+
+.dark .contact input,
+.dark .contact textarea {
+  color: #242526;
+}
+.light .contact {
+  background-color: #ffffff;
+  color: #242526;
+}
+.dark .ShowProduct,
+.dark .Filtres,
+.dark .CarouselAuto {
+  background-color: #111;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #f78e39;
+  font-size: 25px;
+}
+.dark .prix {
+  background-color: #111;
+}
+.dark .prix i {
+  color: white;
+}
+.dark .prix i {
+  color: white;
+}
+.dark .prix .button {
+  background-color: #242526;
+  border: 1px solid #f78e39;
+  font-weight: bold;
+}
+.light .profil {
+  background-color: white;
+}
+
+.dark .profil {
+  background-color: #242526;
+}
+.dark .profil .txt {
+  color: white;
+}
+/* animation code */
+.animation {
+  cursor: pointer;
+  animation: flot-infini 2s ease-in-out 0s infinite;
+  -webkit-animation: flot-infini 2s ease-in-out 0s infinite;
+}
+@keyframes flot-infini {
+  0% {
+    /*transform: scale(1);
+    */
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    /* transform: translateY(0px); */
+    transform: scale(1);
+  }
+}
+/* ERROR PAGES */
+
+#notfound {
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 767px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  padding: 15px;
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 220px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 186px;
+  font-weight: 200;
+  margin: 0px;
+  background: linear-gradient(130deg, #ffa34f, #ff6f68);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-transform: uppercase;
+}
+
+.notfound h2 {
+  font-family: "Kanit", sans-serif;
+  font-size: 33px;
+  font-weight: 200;
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  letter-spacing: 3px;
+}
+
+.notfound p {
+  font-family: "Kanit", sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.notfound a {
+  font-family: "Kanit", sans-serif;
+  color: #ff6f68;
+  font-weight: 200;
+  text-decoration: none;
+  border-bottom: 1px dashed #ff6f68;
+  border-radius: 2px;
+}
+
+.notfound-social > a {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  font-size: 14px;
+  color: #ff6f68;
+  border: 1px solid #efefef;
+  border-radius: 50%;
+  margin: 3px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+.notfound-social > a:hover {
+  color: #fff;
+  background-color: #ff6f68;
+  border-color: #ff6f68;
+}
+
+@media only screen and (max-width: 480px) {
+  .notfound .notfound-404 {
+    position: relative;
+    height: 168px;
+  }
+
+  .notfound .notfound-404 h1 {
+    font-size: 142px;
+  }
+
+  .notfound h2 {
+    font-size: 22px;
+  }
+}
