@@ -1,4 +1,4 @@
-import ReactGA from "react-ga4";
+
 import { useEffect, useState } from "react";
 import { ProgressBar } from "./Components/ProgressBar";
 import NavBar from "./Components/NarBar/NavBar";
@@ -9,9 +9,7 @@ import { useRef } from "react";
 import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Facebook from "./tracking/FacebookPixelOne";
 function App() {
-  //YOUR_TRACKING_ID
-  ReactGA.initialize("YOUR_TRACKING_ID");
-  //YOUR_TRACKING_ID
+
   const mainRef = useRef();
   const current_theme = localStorage.getItem("current_theme");
   const [theme, setTheme] = useState(current_theme ? current_theme : "light");
