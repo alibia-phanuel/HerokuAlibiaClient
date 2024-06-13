@@ -124,7 +124,7 @@ function NavBar({ theme, setTheme }) {
               to="/Service"
               className=" font-bold hover:bg-[#f78e39] p-2 rounded-lg transition-all hover:text-white w-full"
             >
-              <li>Sevices</li>
+              <li>Services</li>
             </Link>
             <Link
               to="/Produits"
