@@ -7,27 +7,12 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Add() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState("");
-  const gammes = [
-    {
-      id: 1,
-      title: " Haut de gamme",
-    },
-    {
-      id: 2,
-      title: "Moyens de gamme",
-    },
-    {
-      id: 3,
-      title: "Bas de gamme",
-    },
-  ];
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [title, setTtile] = useState("");
   const [smallTitlt, setSmallTitle] = useState("");
   const [description, setDescription] = useState("");
   const [features, setFeatures] = useState("");
-  const [gamme, setGammes] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   //Etat de previsualisation des image
@@ -97,7 +82,6 @@ function Add() {
     formData.append("smallTitle", smallTitlt);
     formData.append("description", description);
     formData.append("Features", features);
-    formData.append("gammes", gamme);
     formData.append("price", price);
     formData.append("categories", category);
     //image data
@@ -333,27 +317,6 @@ function Add() {
                           onChange={(e) => setCategory(e.target.value)}
                         />
                         <label htmlFor="art">{categorie.name}</label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="item flex flex-col border my-2 p-2 rounded-lg">
-                  <h1 className="font-bold mt-4 mb-2">Gammes</h1>
-                  <div>
-                    {gammes.map((gamme) => (
-                      <div
-                        key={gamme.id}
-                        className="my-2 flex items-center gap-4"
-                      >
-                        <input
-                          type="checkbox"
-                          name="cat"
-                          value={gamme.title}
-                          id={gamme.id}
-                          onChange={(e) => setGammes(e.target.value)}
-                        />
-                        <label htmlFor="art">{gamme.title}</label>
                       </div>
                     ))}
                   </div>

@@ -42,13 +42,13 @@ function Teams() {
           </span>
         </div>
         <div className="text-[18px] txt  my-2 ">
-          <strong> Développeurs web </strong> L'équipe et moi analysons votre
+          <strong> Développeurs web </strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
         <div>
           {" "}
           <a
-            href=""
+            href="https://arsene-dev.vercel.app/"
             target="_blanck"
             className="underline txt uppercase cursor-pointer"
           >
@@ -86,7 +86,7 @@ function Teams() {
           </span>
         </div>
         <div className="text-[18px] txt  my-2">
-          <strong> Développeurs web </strong> L'équipe et moi analysons votre
+          <strong> Développeurs web </strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
       </motion.div>
@@ -120,7 +120,7 @@ function Teams() {
           </span>
         </div>
         <div className="text-[18px] txt  my-2">
-          <strong>Commerçant</strong> L'équipe et moi analysons votre projet
+          <strong>Commerçant</strong> L`équipe et moi analysons votre projet
           pour lui donner vie dans de bonnes conditions.
         </div>
       </motion.div>
@@ -153,7 +153,7 @@ function Teams() {
           </span>
         </div>
         <div className="text-[18px] txt  my-2">
-          <strong>Community manger</strong> L'équipe et moi analysons votre
+          <strong>Community manger</strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
       </motion.div>
