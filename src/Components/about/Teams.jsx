@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import anders from "../../assets/TEAMS/anders.jpg";
 import marco from "../../assets/TEAMS/marc.jpg";
 import Sammy from "../../assets/TEAMS/Sammy.jpg";
-
+import { Link } from "react-router-dom";
 // import france from "../../assets/TEAMS/france.png";
 import canada from "../../assets/TEAMS/canada.png";
 // import freelances from "../../assets/TEAMS/freelances.png";
@@ -47,14 +47,13 @@ function Teams() {
           projet pour lui donner vie dans de bonnes conditions.
         </div>
         <div>
-          {" "}
-          <a
-            href="https://arsene-dev.vercel.app/"
-            target="_blanck"
+          <Link
             className="underline txt uppercase cursor-pointer"
+            to={{ pathname: "https://arsene-dev.vercel.app/" }}
+            target="_blank"
           >
             Mon portfolio
-          </a>
+          </Link>
         </div>
       </motion.div>
 
