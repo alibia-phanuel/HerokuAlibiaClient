@@ -48,7 +48,7 @@ function Teams() {
         </div>
         <div>
           <Link
-            className="underline txt uppercase cursor-pointer"
+            className="underline  uppercase cursor-pointer"
             to={{ pathname: "https://arsene-dev.vercel.app/" }}
             target="_blank"
           >
