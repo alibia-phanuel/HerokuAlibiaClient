@@ -37,8 +37,8 @@ const Contact = () => {
               <br></br>
               comme des ordinateurs, équipements réseau, etc. Notre priorité est
               <br></br>
-              la <strong>satisfaction du client</strong> dans tout tous les sens
-              du terme
+              la <strong>satisfaction du client</strong> dans tout les sens du
+              terme
             </motion.p>
           </div>
           <motion.div
