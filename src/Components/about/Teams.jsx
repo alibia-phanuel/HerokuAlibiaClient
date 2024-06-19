@@ -42,7 +42,7 @@ function Teams() {
             />
           </span>
         </div>
-        <div className="text-[18px] txt  my-2 ">
+        <div className="text-[18px] txt  my-2 text-justify ">
           <strong> Développeurs web </strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
@@ -147,7 +147,7 @@ function Teams() {
             />
           </span>
         </div>
-        <div className="text-[18px] txt  my-2">
+        <div className="text-[18px] txt  my-2 text-justify">
           <strong> Développeurs web </strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
@@ -239,7 +239,7 @@ function Teams() {
             />
           </span>
         </div>
-        <div className="text-[18px] txt  my-2">
+        <div className="text-[18px] txt  my-2 text-justify">
           <strong>Commerçant</strong> L`équipe et moi analysons votre projet
           pour lui donner vie dans de bonnes conditions.
         </div>
@@ -305,7 +305,7 @@ function Teams() {
             />
           </span>
         </div>
-        <div className="text-[18px] txt  my-2">
+        <div className="text-[18px] txt  my-2 text-justify">
           <strong>Community manger</strong> L`équipe et moi analysons votre
           projet pour lui donner vie dans de bonnes conditions.
         </div>
