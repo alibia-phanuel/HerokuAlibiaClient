@@ -72,7 +72,7 @@ function Teams() {
           <img
             src={Sammy}
             alt="anders"
-            className="w-full absolute top-[-19px] rounded-lg group-hover:scale-[1.1] transition-all duration-300"
+            className="w-full absolute top-[-0px] rounded-lg group-hover:scale-[1.1] transition-all duration-300"
           />
         </div>
         <div className="my-2 txt flex items-center justify-between font-bold text-[30px] capitalize">

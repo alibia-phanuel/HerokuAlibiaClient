@@ -14,7 +14,7 @@ const initialValues = {
   cpassword: "",
 };
 function Sign_up() {
-  const [msg, setMsg] = useState("0");
+  const [msg, setMsg] = useState("");
   // const navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
     initialValues: initialValues,
