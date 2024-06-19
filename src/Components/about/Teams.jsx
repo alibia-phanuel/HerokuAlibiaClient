@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import anders from "../../assets/TEAMS/anders.jpg";
 import marco from "../../assets/TEAMS/marc.jpg";
 import Sammy from "../../assets/TEAMS/Sammy.jpg";
+
 // import france from "../../assets/TEAMS/france.png";
 import canada from "../../assets/TEAMS/canada.png";
 // import freelances from "../../assets/TEAMS/freelances.png";
@@ -27,7 +28,7 @@ function Teams() {
         <div className=" overflow-hidden  h-[350px] rounded-lg flex justify-center items-center relative">
           <img
             src={phanuel}
-            alt=""
+            alt="profils"
             className="absolute w-full rounded-lg top-3 group-hover:scale-[1.1] transition-all duration-300"
           />
         </div>
