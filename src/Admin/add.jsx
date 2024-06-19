@@ -7,12 +7,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Add() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
-  const [title, setTtile] = useState("");
-  const [smallTitlt, setSmallTitle] = useState("");
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [smallTitle, setSmallTitle] = useState("");
   const [description, setDescription] = useState("");
   const [features, setFeatures] = useState("");
+
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   //Etat de previsualisation des image
@@ -79,12 +81,12 @@ function Add() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("smallTitle", smallTitlt);
+    formData.append("smallTitle", smallTitle);
     formData.append("description", description);
     formData.append("Features", features);
-    formData.append("price", price);
     formData.append("categories", category);
-    //image data
+    formData.append("price", price);
+    //IMAGE DATA
     formData.append("fileOne", fileOne);
     formData.append("fileTwo", fileTwo);
     formData.append("fileThree", fileThree);
@@ -174,7 +176,7 @@ function Add() {
                   </label>
                   <input
                     value={title}
-                    onChange={(e) => setTtile(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)}
                     type="text"
                     placeholder="Title"
                     className="w-full outline-none p-4  placeholder-pink-700::placeholder border-2"
@@ -186,7 +188,7 @@ function Add() {
                     Petit titre sur smartPhone
                   </label>
                   <input
-                    value={smallTitlt}
+                    value={smallTitle}
                     onChange={(e) => setSmallTitle(e.target.value)}
                     type="text"
                     placeholder="Petit titre"
