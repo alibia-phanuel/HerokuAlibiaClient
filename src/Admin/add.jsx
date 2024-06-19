@@ -14,9 +14,9 @@ function Add() {
   const [smallTitle, setSmallTitle] = useState("");
   const [description, setDescription] = useState("");
   const [features, setFeatures] = useState("");
-
+  // GESTION DES CATEGORIES
+  const [categories, setCategories] = useState([]);
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
   //Etat de previsualisation des image
   const [prevOne, setPrevOne] = useState("");
   const [prevTwo, setPrevTwo] = useState("");
@@ -53,8 +53,6 @@ function Add() {
     setPrevFour(URL.createObjectURL(imagesFour));
   };
 
-  // GESTION DES CATEGORIES
-  const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories();
 
@@ -84,7 +82,7 @@ function Add() {
     formData.append("smallTitle", smallTitle);
     formData.append("description", description);
     formData.append("Features", features);
-    formData.append("categories", category);
+    formData.append("categories", categories);
     formData.append("price", price);
     //IMAGE DATA
     formData.append("fileOne", fileOne);
@@ -316,7 +314,7 @@ function Add() {
                           name="cat"
                           value={categorie.name}
                           id={categorie.id}
-                          onChange={(e) => setCategory(e.target.value)}
+                          onChange={(e) => setCategories(e.target.value)}
                         />
                         <label htmlFor="art">{categorie.name}</label>
                       </div>
