@@ -84,7 +84,7 @@ function ShowProduct() {
             >
               <div className=" overflow-hidden rounded-lg">
                 <img
-                  src={productByCategory.urlOne}
+                  src={productByCategory.urlTwo}
                   alt="valeur dinamique"
                   className="rounded-lg group-hover:scale-[1.1] transition-all duration-300"
                 />
