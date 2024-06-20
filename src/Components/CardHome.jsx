@@ -32,7 +32,7 @@ function CardHome() {
         >
           <div className=" overflow-hidden rounded-lg">
             <img
-              src={product.urlOne}
+              src={product.urlTwo}
               alt="valeur dinamique"
               className="rounded-lg group-hover:scale-[1.1] transition-all duration-300"
             />
@@ -47,7 +47,7 @@ function CardHome() {
               role="button"
               className="text-white bg-[#f78e39] px-2 py-1 rounded-md  max-md:text-[15px]"
             >
-              Voir l'article
+              Voir l`article
             </Link>
 
             <div

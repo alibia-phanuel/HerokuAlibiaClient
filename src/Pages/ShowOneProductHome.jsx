@@ -75,7 +75,7 @@ function ShowOneProductHome() {
           </div>
           <Slider {...settings}>
             <div className="w-full relative">
-              <img src={productById.urlOne} className="w-full" />
+              <img src={productById.urlFour} className="w-full" />
             </div>
             <div className="w-full relative">
               <img src={productById.urlTwo} className="w-full" />
