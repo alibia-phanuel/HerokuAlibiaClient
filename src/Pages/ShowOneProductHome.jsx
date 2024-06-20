@@ -203,10 +203,10 @@ function ShowOneProductHome() {
                     +": " +
                     productById.id +
                     " je m'appelle : " +
-                    username +
+                    { username } +
                     ": " +
                     "et je suis client depuis le : " +
-                    createdAt
+                    { createdAt }
                   }
                   title={productById.categories}
                   className="cursor-pointer button font-bold  border hover:translate-y-[-10px] transition-all  relative p-2 rounded-xl flex justify-center items-center shadow-lg"
