@@ -7,16 +7,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 function Add() {
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [smallTitle, setSmallTitle] = useState("");
+  const [title, setTtile] = useState("");
+  const [smallTitlt, setSmallTitle] = useState("");
   const [description, setDescription] = useState("");
   const [features, setFeatures] = useState("");
-  // GESTION DES CATEGORIES
-  const [categories, setCategories] = useState([]);
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
   //Etat de previsualisation des image
   const [prevOne, setPrevOne] = useState("");
   const [prevTwo, setPrevTwo] = useState("");
@@ -53,6 +51,8 @@ function Add() {
     setPrevFour(URL.createObjectURL(imagesFour));
   };
 
+  // GESTION DES CATEGORIES
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories();
 
@@ -79,12 +79,13 @@ function Add() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("smallTitle", smallTitle);
+    formData.append("smallTitle", smallTitlt);
     formData.append("description", description);
     formData.append("Features", features);
-    formData.append("categories", categories);
+
     formData.append("price", price);
-    //IMAGE DATA
+    formData.append("categories", category);
+    //image data
     formData.append("fileOne", fileOne);
     formData.append("fileTwo", fileTwo);
     formData.append("fileThree", fileThree);
@@ -174,7 +175,7 @@ function Add() {
                   </label>
                   <input
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTtile(e.target.value)}
                     type="text"
                     placeholder="Title"
                     className="w-full outline-none p-4  placeholder-pink-700::placeholder border-2"
@@ -186,7 +187,7 @@ function Add() {
                     Petit titre sur smartPhone
                   </label>
                   <input
-                    value={smallTitle}
+                    value={smallTitlt}
                     onChange={(e) => setSmallTitle(e.target.value)}
                     type="text"
                     placeholder="Petit titre"
@@ -314,7 +315,7 @@ function Add() {
                           name="cat"
                           value={categorie.name}
                           id={categorie.id}
-                          onChange={(e) => setCategories(e.target.value)}
+                          onChange={(e) => setCategory(e.target.value)}
                         />
                         <label htmlFor="art">{categorie.name}</label>
                       </div>
