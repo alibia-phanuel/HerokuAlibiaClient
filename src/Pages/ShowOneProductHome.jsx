@@ -89,7 +89,7 @@ function ShowOneProductHome() {
           </Slider>
           <div className=" mt-4 text-[15px]">
             Vendue avec facture garantie de deux mois et un service après vente{" "}
-            d'un ans livraison et expédition possible
+            d`un ans livraison et expédition possible
           </div>
         </div>
         <div className=" md:w-[50%] max-md:w-full my-5 max-md:my-0 h-full">
@@ -213,7 +213,7 @@ function ShowOneProductHome() {
                 >
                   <i className="text-[#636363]  fa-brands fa-whatsapp my-0 mx-[10px]  text-[25px]"></i>
                   <span>
-                    Discuter avec nous 
+                    Discuter avec nous
                     <span className="text-[#F78E39] capitalize ml-1">
                       {username}
                     </span>
@@ -227,7 +227,7 @@ function ShowOneProductHome() {
                     "https://wa.me/+237696603305?text=I" +
                     productById.title +
                     " " +
-                    productById.urlOne +
+                    productById.urlFour +
                     " " +
                     +" " +
                     productById.id
@@ -236,7 +236,7 @@ function ShowOneProductHome() {
                   className="cursor-pointer button font-bold  border hover:translate-y-[-10px] transition-all  relative p-2 rounded-xl flex justify-center items-center shadow-lg"
                 >
                   <i className="text-[#636363]  fa-brands fa-whatsapp my-0 mx-[10px]  text-[25px]"></i>
-                  <span> Discuter avec nous 🙂</span>
+                  <span> Discuter avec nous 🙂</span>
                 </a>
               )}
             </div>
