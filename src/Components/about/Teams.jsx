@@ -49,7 +49,7 @@ function Teams() {
         <div className="flex justify-between items-center">
           {" "}
           <a
-            href="https://arsene-dev.vercel.app/"
+            href="https://arsenetsopze.dev"
             target="_blanck"
             className="underline txt uppercase cursor-pointer font-bold"
           >
