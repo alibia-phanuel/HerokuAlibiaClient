@@ -16,22 +16,22 @@ function Add() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   //Etat de previsualisation des image
-  const [prevOne, setPrevOne] = useState("");
+  // const [prevOne, setPrevOne] = useState("");
   const [prevTwo, setPrevTwo] = useState("");
   const [prevThree, setPrevThree] = useState("");
   const [prevFour, setPrevFour] = useState("");
   ///Traitement image
-  const [fileOne, setFileOne] = useState("");
+  // const [fileOne, setFileOne] = useState("");
   const [fileTwo, setFileTwo] = useState("");
   const [fileThree, setFileThree] = useState("");
   const [fileFour, setFileFour] = useState("");
   //image loading prev
 
-  const loadImOne = (e) => {
-    const imagesOne = e.target.files[0];
-    setFileOne(imagesOne);
-    setPrevOne(URL.createObjectURL(imagesOne));
-  };
+  // const loadImOne = (e) => {
+  //   const imagesOne = e.target.files[0];
+  //   setFileOne(imagesOne);
+  //   setPrevOne(URL.createObjectURL(imagesOne));
+  // };
 
   const loadImTwo = (e) => {
     const imagesTwo = e.target.files[0];
@@ -86,7 +86,7 @@ function Add() {
     formData.append("price", price);
     formData.append("categories", category);
     //image data
-    formData.append("fileOne", fileOne);
+    // formData.append("fileOne", fileOne);
     formData.append("fileTwo", fileTwo);
     formData.append("fileThree", fileThree);
     formData.append("fileFour", fileFour);
@@ -128,15 +128,7 @@ function Add() {
           </div>
         </div>
         <div className="w-full mb-[50px]  flex gap-4 items-center justify-between">
-          <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
-            {prevOne ? (
-              <div className="w-full bg-red-300 rounded">
-                <img src={prevOne} alt="image product" className="w-full" />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+          {/**base.js */}
           <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
             {prevTwo ? (
               <div className="w-full bg-red-300 rounded">
@@ -235,23 +227,7 @@ function Add() {
 
               <div className="menu ">
                 <div className="item flex gap-4 border p-2 rounded-lg">
-                  <div className="border p-2 rounded-lg  ">
-                    <input
-                      style={{ display: "none" }}
-                      type="file"
-                      onChange={loadImOne}
-                      name=""
-                      id="fileOne"
-                    />
-                    <label
-                      className="file cursor-pointer flex items-center gap-2"
-                      htmlFor="fileOne"
-                    >
-                      <i className="fa-solid fa-image"></i>
-                      <p>Uploade 01</p>
-                    </label>
-                  </div>
-
+                  {/**Base.js */}
                   <div className="border p-2 rounded-lg cursor-pointer">
                     <input
                       style={{ display: "none" }}
