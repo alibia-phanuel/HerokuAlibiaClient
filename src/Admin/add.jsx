@@ -217,7 +217,7 @@ function Add() {
                   <input
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    type="text"
+                    type="number"
                     placeholder="Prix ..."
                     className="w-full outline-none p-4 border-2 placeholder-pink-700::placeholder "
                   />
