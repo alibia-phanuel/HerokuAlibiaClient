@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { imageDB } from "../firebase";
 import axios from "axios";
+//Fonction de construction est utilise pour cree une referance dans le stackage Firebas
+import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
@@ -16,46 +20,38 @@ function Add() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   //Etat de previsualisation des image
-  // const [prevOne, setPrevOne] = useState("");
   const [prevTwo, setPrevTwo] = useState("");
   const [prevThree, setPrevThree] = useState("");
   const [prevFour, setPrevFour] = useState("");
   ///Traitement image
-  // const [fileOne, setFileOne] = useState("");
-  const [fileTwo, setFileTwo] = useState("");
-  const [fileThree, setFileThree] = useState("");
-  const [fileFour, setFileFour] = useState("");
+  const [UrlfileTwo, setUrlfileTwo] = useState("");
+  const [UrlfileThree, setUrlfileThree] = useState("");
+  const [UrlfileFour, setUrlfileFour] = useState("");
   //image loading prev
-
-  // const loadImOne = (e) => {
-  //   const imagesOne = e.target.files[0];
-  //   setFileOne(imagesOne);
-  //   setPrevOne(URL.createObjectURL(imagesOne));
-  // };
-
   const loadImTwo = (e) => {
     const imagesTwo = e.target.files[0];
-    setFileTwo(imagesTwo);
+    setUrlfileTwo(imagesTwo);
     setPrevTwo(URL.createObjectURL(imagesTwo));
   };
-
   const loadImThree = (e) => {
     const imagesThree = e.target.files[0];
-    setFileThree(imagesThree);
+    setUrlfileThree(imagesThree);
     setPrevThree(URL.createObjectURL(imagesThree));
   };
-
   const loadImgFour = (e) => {
     const imagesFour = e.target.files[0];
-    setFileFour(imagesFour);
+    setUrlfileFour(imagesFour);
     setPrevFour(URL.createObjectURL(imagesFour));
   };
+  //Liens des image qui vienne de fireBase
+  const [imgUrlOne, setImgUrlOne] = useState("");
+  const [imgUrlTwo, setImgUrlTwo] = useState("");
+  const [imgUrlThree, setImgUrlThree] = useState("");
 
   // GESTION DES CATEGORIES
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories();
-
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("AdminName");
     const mail = localStorage.getItem("AdminEmail");
@@ -69,29 +65,71 @@ function Add() {
     }
   }, []);
   const getCategories = async () => {
+    //Envoi des image sur firebase
+
     const response = await axios.get(
       "https://alibia-servers-8df52ae8673d.herokuapp.com/caterory"
     );
     setCategories(response.data);
   };
   // FIN GESTION DES CATEGORIES
-  const saveProduct = async (e) => {
+  const SaveProduct = async (e) => {
     e.preventDefault();
+
+    if (UrlfileTwo !== null) {
+      const imgRef = ref(imageDB, `imagesOne/${uuidv4()}`);
+      uploadBytes(imgRef, UrlfileTwo);
+    }
+
+    if (UrlfileThree !== null) {
+      const imgRef = ref(imageDB, `imagesTwo/${uuidv4()}`);
+      uploadBytes(imgRef, UrlfileThree);
+    }
+
+    if (UrlfileFour !== null) {
+      const imgRef = ref(imageDB, `imagesThree/${uuidv4()}`);
+      uploadBytes(imgRef, imgUrlThree);
+    }
+  };
+  useEffect(() => {
+    //Array image Two
+    listAll(ref(imageDB, "imagesOne")).then((imgs) => {
+      imgs.items.forEach((val) => {
+        getDownloadURL(val).then((url) => {
+          setImgUrlOne((data) => [...data, url]);
+        });
+      });
+    });
+    //Array image three
+    listAll(ref(imageDB, "imagesTwo")).then((imgs) => {
+      imgs.items.forEach((val) => {
+        getDownloadURL(val).then((url) => {
+          setImgUrlTwo((data) => [...data, url]);
+        });
+      });
+    });
+    //Array image Foor
+    listAll(ref(imageDB, "imagesThree")).then((imgs) => {
+      imgs.items.forEach((val) => {
+        getDownloadURL(val).then((url) => {
+          setImgUrlThree((data) => [...data, url]);
+        });
+      });
+    });
+  }, []);
+  const dbSend = async () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("smallTitle", smallTitlt);
     formData.append("description", description);
     formData.append("Features", features);
-
     formData.append("price", price);
     formData.append("categories", category);
     //image data
-    // formData.append("fileOne", fileOne);
-    formData.append("fileTwo", fileTwo);
-    formData.append("fileThree", fileThree);
-    formData.append("fileFour", fileFour);
-    console.log(formData);
-
+    formData.append("UrlfileTwo", imgUrlOne);
+    formData.append("UrlfileThree", imgUrlTwo);
+    formData.append("UrlfileFour", imgUrlThree);
+    // console.log(formData);
     try {
       await axios.post(
         "https://alibia-servers-8df52ae8673d.herokuapp.com/products",
@@ -127,8 +165,7 @@ function Add() {
             </Link>
           </div>
         </div>
-        <div className="w-full mb-[50px]  flex gap-4 items-center justify-between">
-          {/**base.js */}
+        <div className="w-full mb-[50px]  flex gap-4 items-center justify-evenly bg-yellow-300">
           <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
             {prevTwo ? (
               <div className="w-full bg-red-300 rounded">
@@ -157,7 +194,7 @@ function Add() {
             )}
           </div>
         </div>
-        <form method="GET" className="w-full" onSubmit={saveProduct}>
+        <form method="GET" className="w-full" onSubmit={SaveProduct}>
           <div className="Propos   admin p-4 my-[50px] rounded-lg   flex justify-between items-center  gap-x-4  w-full">
             <div className="flex items-center  w-full justify-between flex-wrap max-md:justify-center">
               <div className="content w-[60%]">
@@ -224,10 +261,9 @@ function Add() {
                 </div>
               </div>
               {/** left content*/}
-
               <div className="menu ">
-                <div className="item flex gap-4 border p-2 rounded-lg">
-                  {/**Base.js */}
+                <div className="item flex gap-4 border p-2 rounded-lg bg-red-400 my-10">
+                  {/**Base.js */};
                   <div className="border p-2 rounded-lg cursor-pointer">
                     <input
                       style={{ display: "none" }}
@@ -243,7 +279,6 @@ function Add() {
                       <p>Uploade 02</p>
                     </label>
                   </div>
-
                   <div className="border p-2 rounded-lg cursor-pointer">
                     <input
                       style={{ display: "none" }}
@@ -260,7 +295,6 @@ function Add() {
                       <p>Uploade 03</p>
                     </label>
                   </div>
-
                   <div className="border p-2 rounded-lg cursor-pointer">
                     <input
                       style={{ display: "none" }}
@@ -278,6 +312,7 @@ function Add() {
                     </label>
                   </div>
                 </div>
+                {/**div category */}
                 <div className="item flex flex-col border my-2 p-2 rounded-lg">
                   <h1 className="font-bold mt-4 mb-2">Category</h1>
                   <div>
@@ -298,12 +333,14 @@ function Add() {
                     ))}
                   </div>
                 </div>
+                ;
               </div>
               <button
+                onClick={dbSend}
                 type="submit"
                 className="capitalize bg-[#45bd41] text-white  p-2 rounded-lg w-full hover:bg-[#5ef550ad] transition-all"
               >
-                ajouter
+                Ajouter
               </button>
             </div>
           </div>
