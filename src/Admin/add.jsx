@@ -44,9 +44,11 @@ function Add() {
     setPrevFour(URL.createObjectURL(imagesFour));
   };
   //Liens des image qui vienne de fireBase
-  const [imgUrlOne, setImgUrlOne] = useState("");
-  const [imgUrlTwo, setImgUrlTwo] = useState("");
-  const [imgUrlThree, setImgUrlThree] = useState("");
+  const [imgUrlOne, setImgUrlOne] = useState([]);
+  const [imgUrlTwo, setImgUrlTwo] = useState([]);
+  const [imgUrlThree, setImgUrlThree] = useState([]);
+  // État pour le tableau des dernières valeurs
+  const [dernieresValeurs, setDernieresValeurs] = useState([]);
 
   // GESTION DES CATEGORIES
   const [categories, setCategories] = useState([]);
@@ -55,6 +57,7 @@ function Add() {
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("AdminName");
     const mail = localStorage.getItem("AdminEmail");
+
     if (token) {
       setUsername(name);
     }
@@ -75,7 +78,6 @@ function Add() {
   // FIN GESTION DES CATEGORIES
   const SaveProduct = async (e) => {
     e.preventDefault();
-
     if (UrlfileTwo !== null) {
       const imgRef = ref(imageDB, `imagesOne/${uuidv4()}`);
       uploadBytes(imgRef, UrlfileTwo);
@@ -88,9 +90,18 @@ function Add() {
 
     if (UrlfileFour !== null) {
       const imgRef = ref(imageDB, `imagesThree/${uuidv4()}`);
-      uploadBytes(imgRef, imgUrlThree);
+      uploadBytes(imgRef, UrlfileFour);
     }
+    localStorage.setItem("title", JSON.stringify(title));
+    localStorage.setItem("smallTitlt", JSON.stringify(smallTitlt));
+    localStorage.setItem("description", JSON.stringify(description));
+    localStorage.setItem("features", JSON.stringify(features));
+    localStorage.setItem("price", JSON.stringify(price));
+    localStorage.setItem("categories", JSON.stringify(category));
   };
+
+  console.log(dernieresValeurs[0], dernieresValeurs[1], dernieresValeurs[2]);
+
   useEffect(() => {
     //Array image Two
     listAll(ref(imageDB, "imagesOne")).then((imgs) => {
@@ -117,18 +128,36 @@ function Add() {
       });
     });
   }, []);
+  // Effet pour mettre à jour le tableau des dernières valeurs lorsque les tableaux d'images changent
+  useEffect(() => {
+    const nouvellesDernieresValeurs = [
+      imgUrlOne[imgUrlOne.length - 1],
+      imgUrlTwo[imgUrlTwo.length - 1],
+      imgUrlThree[imgUrlThree.length - 1],
+    ];
+    setDernieresValeurs(nouvellesDernieresValeurs);
+  }, [imgUrlOne, imgUrlTwo, imgUrlThree]);
+
   const dbSend = async () => {
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("smallTitle", smallTitlt);
-    formData.append("description", description);
-    formData.append("Features", features);
-    formData.append("price", price);
-    formData.append("categories", category);
-    //image data
-    formData.append("UrlfileTwo", imgUrlOne);
-    formData.append("UrlfileThree", imgUrlTwo);
-    formData.append("UrlfileFour", imgUrlThree);
+
+    localStorage.getItem("title"),
+      localStorage.getItem("smallTitlt"),
+      localStorage.getItem("description"),
+      localStorage.getItem("features"),
+      localStorage.getItem("price"),
+      localStorage.getItem("categories");
+    //image dans le local storage
+    formData.append("title", localStorage.getItem("title"));
+    formData.append("smallTitle", localStorage.getItem("smallTitlt"));
+    formData.append("description", localStorage.getItem("description"));
+    formData.append("Features", localStorage.getItem("features"));
+    formData.append("price", localStorage.getItem("price"));
+    formData.append("categories", localStorage.getItem("categories"));
+    // //image data
+    // formData.append("UrlfileTwo", imgUrlOne);
+    // formData.append("UrlfileThree", imgUrlTwo);
+    // formData.append("UrlfileFour", imgUrlThree);
     // console.log(formData);
     try {
       await axios.post(
@@ -140,6 +169,17 @@ function Add() {
           },
         }
       );
+      console.log("Product saved successfully");
+      localStorage.removeItem("title");
+      localStorage.removeItem("smallTitlt");
+      localStorage.removeItem("description");
+      localStorage.removeItem("features");
+      localStorage.removeItem("price");
+      localStorage.removeItem("categories");
+      // //image dans le local storage
+      // localStorage.removeItem("imgOne");
+      // localStorage.removeItem("imgTwo");
+      // localStorage.removeItem("imgThree");
       navigate("/ListProduct");
     } catch (error) {
       console.log(error.message);
