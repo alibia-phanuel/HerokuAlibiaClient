@@ -60,7 +60,7 @@ const Contact = () => {
           </motion.div>
         </div>
         <h1 className="text-[35px] mb-5 mt-[60px] font-bold w-full max-md:text-center ">
-          L'équipe au complet
+          L`équipe au complet
         </h1>
         <Teams />
       </div>

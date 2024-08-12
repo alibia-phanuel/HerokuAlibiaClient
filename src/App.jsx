@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { ProgressBar } from "./Components/ProgressBar";
 import NavBar from "./Components/NarBar/NavBar";
@@ -9,7 +8,6 @@ import { useRef } from "react";
 import ScrollToTopButton from "./Components/ScrollToTopButton";
 import Facebook from "./tracking/FacebookPixelOne";
 function App() {
-
   const mainRef = useRef();
   const current_theme = localStorage.getItem("current_theme");
   const [theme, setTheme] = useState(current_theme ? current_theme : "light");

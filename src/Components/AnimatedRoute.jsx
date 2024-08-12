@@ -34,7 +34,6 @@ function AnimatedRoute() {
         <Route path="/freelances" element={<Freelances />} />
         <Route path="/ShowProduct/:id" element={<ShowProduct />} />
         <Route path="/filtreProduits/:id" element={<FilterProduct />} />
-
         {/**Auth */}
         <Route path="/inscription" element={<Sign_up />} />
         <Route path="/Se-Connecter" element={<Login />} />

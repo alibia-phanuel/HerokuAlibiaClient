@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
