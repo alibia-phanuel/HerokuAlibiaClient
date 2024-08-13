@@ -16,7 +16,11 @@ function Add() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   //Etat du fichier
-  const [file, setFile] = useState();
+  const [file, setFile] = useState("");
+  const loadImg = (e) => {
+    const images = e.target.files[0];
+    setFile(images);
+  };
   // GESTION DES CATEGORIES
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -49,7 +53,7 @@ function Add() {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("category", category);
-    formData.append("image", file);
+    formData.append("file", file);
 
     try {
       await axios.post(
@@ -159,11 +163,7 @@ function Add() {
                 <div className="item flex gap-4 border p-2 rounded-lg bg-[#cccccc78] my-10">
                   {/**Base.js */}
                   <div className="border p-2 rounded-lg cursor-pointer">
-                    <input
-                      type="file"
-                      onChange={(e) => setFile(e.target.files[0])}
-                      className="py-4 "
-                    />
+                    <input type="file" onChange={loadImg} className="py-4 " />
                     <label
                       className="file cursor-pointer flex items-center gap-2"
                       htmlFor="filetwo"
