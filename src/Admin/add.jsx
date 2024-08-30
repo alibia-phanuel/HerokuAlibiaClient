@@ -15,16 +15,47 @@ function Add() {
   const [features, setFeatures] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  //Etat du fichier
-  const [file, setFile] = useState("");
-  const loadImg = (e) => {
-    const images = e.target.files[0];
-    setFile(images);
+  //Etat de previsualisation des image
+  const [prevOne, setPrevOne] = useState("");
+  const [prevTwo, setPrevTwo] = useState("");
+  const [prevThree, setPrevThree] = useState("");
+  const [prevFour, setPrevFour] = useState("");
+  ///Traitement image
+  const [fileOne, setFileOne] = useState("");
+  const [fileTwo, setFileTwo] = useState("");
+  const [fileThree, setFileThree] = useState("");
+  const [fileFour, setFileFour] = useState("");
+  //image loading prev
+
+  const loadImOne = (e) => {
+    const imagesOne = e.target.files[0];
+    setFileOne(imagesOne);
+    setPrevOne(URL.createObjectURL(imagesOne));
   };
+
+  const loadImTwo = (e) => {
+    const imagesTwo = e.target.files[0];
+    setFileTwo(imagesTwo);
+    setPrevTwo(URL.createObjectURL(imagesTwo));
+  };
+
+  const loadImThree = (e) => {
+    const imagesThree = e.target.files[0];
+    setFileThree(imagesThree);
+    setPrevThree(URL.createObjectURL(imagesThree));
+  };
+
+  const loadImgFour = (e) => {
+    const imagesFour = e.target.files[0];
+    setFileFour(imagesFour);
+    setPrevFour(URL.createObjectURL(imagesFour));
+  };
+
   // GESTION DES CATEGORIES
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories();
+
     const token = localStorage.getItem("token");
     const name = localStorage.getItem("AdminName");
     const mail = localStorage.getItem("AdminEmail");
@@ -38,35 +69,34 @@ function Add() {
     }
   }, []);
   const getCategories = async () => {
-    //Envoi des image sur firebase
-    const response = await axios.get(
-      "https://alibia-servers-8df52ae8673d.herokuapp.com/caterory"
-    );
+    const response = await axios.get("http://localhost:5000/caterory");
     setCategories(response.data);
   };
   // FIN GESTION DES CATEGORIES
-  const SaveProduct = async (e) => {
+  const saveProduct = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("smallTitlt", smallTitlt);
+    formData.append("smallTitle", smallTitlt);
     formData.append("description", description);
+    formData.append("Features", features);
+
     formData.append("price", price);
-    formData.append("category", category);
-    formData.append("file", file);
+    formData.append("categories", category);
+    //image data
+    formData.append("fileOne", fileOne);
+    formData.append("fileTwo", fileTwo);
+    formData.append("fileThree", fileThree);
+    formData.append("fileFour", fileFour);
+    console.log(formData);
 
     try {
-      await axios.post(
-        "https://alibia-servers-8df52ae8673d.herokuapp.com/products",
-        formData,
-        {
-          headers: {
-            "Content-type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("Product saved successfully");
-      // navigate("/ListProduct");
+      await axios.post("http://localhost:5000/products", formData, {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      });
+      navigate("/ListProduct");
     } catch (error) {
       console.log(error.message);
     }
@@ -91,8 +121,45 @@ function Add() {
             </Link>
           </div>
         </div>
-
-        <form method="GET" className="w-full" onSubmit={SaveProduct}>
+        <div className="w-full mb-[50px]  flex gap-4 items-center justify-between">
+          <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
+            {prevOne ? (
+              <div className="w-full bg-red-300 rounded">
+                <img src={prevOne} alt="image product" className="w-full" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
+            {prevTwo ? (
+              <div className="w-full bg-red-300 rounded">
+                <img src={prevTwo} alt="image product" className="w-full" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
+            {prevThree ? (
+              <div className="w-full bg-red-300 rounded">
+                <img src={prevThree} alt="image product" className="w-full" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="bg-yellow-200  w-[400px] overflow-hidden rounded-lg">
+            {prevFour ? (
+              <div className="w-full bg-red-300 rounded">
+                <img src={prevFour} alt="image product" className="w-full" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <form method="GET" className="w-full" onSubmit={saveProduct}>
           <div className="Propos   admin p-4 my-[50px] rounded-lg   flex justify-between items-center  gap-x-4  w-full">
             <div className="flex items-center  w-full justify-between flex-wrap max-md:justify-center">
               <div className="content w-[60%]">
@@ -159,21 +226,76 @@ function Add() {
                 </div>
               </div>
               {/** left content*/}
+
               <div className="menu ">
-                <div className="item flex gap-4 border p-2 rounded-lg bg-[#cccccc78] my-10">
-                  {/**Base.js */}
+                <div className="item flex gap-4 border p-2 rounded-lg">
+                  <div className="border p-2 rounded-lg  ">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={loadImOne}
+                      name=""
+                      id="fileOne"
+                    />
+                    <label
+                      className="file cursor-pointer flex items-center gap-2"
+                      htmlFor="fileOne"
+                    >
+                      <i className="fa-solid fa-image"></i>
+                      <p>Uploade 01</p>
+                    </label>
+                  </div>
+
                   <div className="border p-2 rounded-lg cursor-pointer">
-                    <input type="file" onChange={loadImg} className="py-4 " />
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={loadImTwo}
+                      id="filetwo"
+                    />
                     <label
                       className="file cursor-pointer flex items-center gap-2"
                       htmlFor="filetwo"
                     >
                       <i className="fa-solid fa-image"></i>
-                      <p>Uploade</p>
+                      <p>Uploade 02</p>
+                    </label>
+                  </div>
+
+                  <div className="border p-2 rounded-lg cursor-pointer">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={loadImThree}
+                      name=""
+                      id="filethree"
+                    />
+                    <label
+                      className="file cursor-pointer flex items-center gap-2"
+                      htmlFor="filethree"
+                    >
+                      <i className="fa-solid fa-image"></i>
+                      <p>Uploade 03</p>
+                    </label>
+                  </div>
+
+                  <div className="border p-2 rounded-lg cursor-pointer">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={loadImgFour}
+                      name=""
+                      id="filefoor"
+                    />
+                    <label
+                      className="file cursor-pointer flex items-center gap-2"
+                      htmlFor="filefoor"
+                    >
+                      <i className="fa-solid fa-image"></i>
+                      <p>Uploade 04</p>
                     </label>
                   </div>
                 </div>
-                {/**div category */}
                 <div className="item flex flex-col border my-2 p-2 rounded-lg">
                   <h1 className="font-bold mt-4 mb-2">Category</h1>
                   <div>
@@ -199,7 +321,7 @@ function Add() {
                 type="submit"
                 className="capitalize bg-[#45bd41] text-white  p-2 rounded-lg w-full hover:bg-[#5ef550ad] transition-all"
               >
-                Ajouter
+                ajouter
               </button>
             </div>
           </div>

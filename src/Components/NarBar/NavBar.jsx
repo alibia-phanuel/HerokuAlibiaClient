@@ -49,12 +49,18 @@ function NavBar({ theme, setTheme }) {
               >
                 <li>Services</li>
               </Link>
-              <Link
+              {
+                {
+                  /**
+                <Link
                 to="/Produits"
                 className=" font-bold hover:bg-[#f78e39] p-2 rounded-lg transition-all hover:text-white"
               >
                 <li>Produits</li>
               </Link>
+          */
+                }
+              }
 
               <Link
                 to="/Guide"
